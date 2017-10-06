@@ -5,7 +5,7 @@ import java.util.List;
 
 import util.TreeNode;
 
-public class T665PrintBinaryTree {
+public class T655PrintBinaryTree {
 	public List<List<String>> printTree(TreeNode root) {
 		if (root == null)
 			return new ArrayList<>();
@@ -17,40 +17,43 @@ public class T665PrintBinaryTree {
 			subList.add("" + root.val + "");
 			list.add(subList);
 		} else {
-			int rows = 0;
-			int cols = 0;
-			if (left.isEmpty()) {
-				rows = right.size();
-				cols = right.get(0).size();
-			} else {
-				rows = left.size();
-				cols = left.get(0).size();
-			}
+			int rows = Math.max(left.size(), right.size());
+			int cols = left.size() == rows ? left.get(0).size() : right.get(0).size();
 			addSubList(root, list, left, right, rows, cols);
 		}
 
 		return list;
 	}
 
+	private void addSubList(List<List<String>> list, List<List<String>> subList, int rows, int cols) {
+		for (int i = 0; i < subList.size(); i++) {
+			int subCols = subList.get(0).size();
+			List<String> row = list.get(i);
+			for (int j = 0; j < (cols - subCols) / 2; j++)
+				row.add("");
+			for (int j = 0; j < subCols; j++)
+				row.add(subList.get(i).get(j));
+			for (int j = 0; j < (cols - subCols) / 2; j++)
+				row.add("");
+		}
+		for (int i = subList.size(); i < rows; i++) {
+			List<String> row = list.get(i);
+			for (int j = 0; j < cols; j++)
+				row.add("");
+		}
+	}
+
 	private void addSubList(TreeNode root, List<List<String>> list, List<List<String>> left, List<List<String>> right,
 			int rows, int cols) {
-		for (int i = 0; i < rows; i++) {
-			List<String> subList = new ArrayList<>();
-			for (int j = 0; j < cols; j++) {
-				subList.add(left.isEmpty() ? "" : left.get(i).get(j));
-			}
-			list.add(subList);
-		}
+		for (int i = 0; i < rows; i++)
+			list.add(new ArrayList<String>());
+		addSubList(list, left, rows, cols);
 
 		for (int i = 0; i < rows; i++) {
 			list.get(i).add("");
 		}
 
-		for (int i = 0; i < rows; i++) {
-			for (int j = 0; j < cols; j++) {
-				list.get(i).add(right.isEmpty() ? "" : right.get(i).get(j));
-			}
-		}
+		addSubList(list, right, rows, cols);
 
 		List<String> firstLine = new ArrayList<>();
 		for (int j = 0; j < cols; j++)
@@ -62,6 +65,6 @@ public class T665PrintBinaryTree {
 	}
 
 	public static void main(String[] args) {
-		new T665PrintBinaryTree().printTree(T297SerializeBinaryTree.deserialize("1,2,3,null,4"));
+		new T655PrintBinaryTree().printTree(T297SerializeBinaryTree.deserialize("1,2,3,null,4"));
 	}
 }
