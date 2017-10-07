@@ -22,11 +22,11 @@ public class T131PalindromePartition {
 		}
 
 		for (int i = start; i <= s.length(); i++) {
-			if (isPalindrome(s, start, i))
+			if (isPalindrome(s, start, i)) {
 				list.add(s.substring(start, i + 1));
-			helper(s, i + 1, list);
-			if (!list.isEmpty())
+				helper(s, i + 1, list);
 				list.remove(list.size() - 1);
+			}
 		}
 	}
 
