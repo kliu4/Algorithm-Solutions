@@ -1,5 +1,6 @@
 package leetcode;
 
+//beat 98.4%
 public class T664StrangePrinter {
 	private int[][] dp;
 
