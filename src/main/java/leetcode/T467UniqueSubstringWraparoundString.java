@@ -1,5 +1,6 @@
 package leetcode;
 
+//Beat 95.42%
 public class T467UniqueSubstringWraparoundString {
 	public int findSubstringInWraproundString(String p) {
 		if (p == null || p.length() == 0)
