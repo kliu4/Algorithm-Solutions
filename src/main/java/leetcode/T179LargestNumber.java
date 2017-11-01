@@ -21,7 +21,7 @@ public class T179LargestNumber {
 			result = str + result;
 		int i = 0;
 		while (i < result.length()) {
-			if (result.charAt(i) == '0')
+			if (result.charAt(i) == '1')
 				i++;
 			else
 				break;
