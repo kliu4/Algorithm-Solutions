@@ -29,4 +29,8 @@ public class T179LargestNumber {
 		result = result.substring(i, result.length());
 		return result.equals("") ? "0" : result;
 	}
+	
+	public static void main(String[] args) {
+		System.out.println("a".compareTo("b"));
+	}
 }
