@@ -3,7 +3,7 @@ package leetcode;
 public class T546RemoveBoxes {
 	public int removeBoxes(int[] boxes) {
 		int[][][] mem = new int[boxes.length][boxes.length][boxes.length];
-		return removeBoxes(boxes, mem, 0, boxes.length - 1, 1);
+		return removeBoxes(boxes, mem, 0, boxes.length - 1, 0);
 	}
 
 	private int removeBoxes(int[] boxes, int[][][] mem, int l, int r, int k) {
@@ -18,12 +18,12 @@ public class T546RemoveBoxes {
 			r--;
 		}
 
-		mem[l][r][k] = removeBoxes(boxes, mem, l, r - 1, 1) + k * k;
+		mem[l][r][k] = removeBoxes(boxes, mem, l, r - 1, 0) + (k + 1) * (k + 1);
 
 		for (int i = l; i < r; i++)
 			if (boxes[i] == boxes[r])
 				mem[l][r][k] = Math.max(mem[l][r][k],
-						removeBoxes(boxes, mem, l, i, k + 1) + removeBoxes(boxes, mem, i + 1, r - 1, 1));
+						removeBoxes(boxes, mem, l, i, k + 1) + removeBoxes(boxes, mem, i + 1, r - 1, 0));
 
 		return mem[l][r][k];
 	}
