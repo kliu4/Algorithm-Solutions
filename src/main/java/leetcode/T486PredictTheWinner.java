@@ -1,5 +1,6 @@
 package leetcode;
 
+//memorized dfs
 public class T486PredictTheWinner {
 	public boolean PredictTheWinner(int[] nums) {
 		int[] sums = new int[nums.length];
