@@ -11,8 +11,8 @@ public class T128LongestConsecutiveSequence {
 		for(int num:nums) {
 			if(map.containsKey(num))
 				continue;
-			int l = map.getOrDefault(num, 0);
-			int r = map.getOrDefault(num, 0);
+			int l = map.getOrDefault(num - 1, 0);
+			int r = map.getOrDefault(num + 1, 0);
 			
 			int length = l + r + 1;
 			max = Math.max(length, max);
