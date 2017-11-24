@@ -12,26 +12,21 @@ public class T329LongestIncreasingPathInMatrix {
 
 		int[][] paths = new int[m][n];
 
-		for (int i = 0; i < m; i++)
-			for (int j = 0; j < n; j++)
-				paths[i][j] = 1;
-
-		for (int i = 0; i < m; i++)
-			for (int j = 0; j < n; j++)
-				dfs(matrix, paths, i, j);
-
 		int max = 1;
 		for (int i = 0; i < m; i++)
-			for (int j = 0; j < n; j++)
-				max = Math.max(max, paths[i][j]);
+			for (int j = 0; j < n; j++) {
+				int len = dfs(matrix, paths, i, j);
+				max = Math.max(max, len);
+			}
 
 		return max;
 	}
 
 	private int dfs(int[][] matrix, int[][] paths, int i, int j) {
-		if (paths[i][j] != 1)
+		if (paths[i][j] != 0)
 			return paths[i][j];
 
+		paths[i][j] = 1;
 		for (int[] dir : dirs) {
 			int newI = i + dir[0];
 			int newJ = j + dir[1];
