@@ -3,10 +3,8 @@ package leetcode;
 public class T640SolveTheEquation {
 	public String solveEquation(String equation) {
 		String[] parts = equation.split("=");
-		String left = parts[0];
-		String right = parts[1];
-		int[] leftE = convert(left);
-		int[] rightE = convert(right);
+		int[] leftE = convert(parts[0]);
+		int[] rightE = convert(parts[1]);
 
 		// change to ax = b
 		int a = leftE[0] - rightE[0];
@@ -21,30 +19,19 @@ public class T640SolveTheEquation {
 	}
 
 	// convert to ax+b
-	private int[] convert(String str) {
-		int prev = 0;
+	private int[] convert(String equation) {
 		int a = 0;
 		int b = 0;
-		for (int i = 0; i <= str.length(); i++) {
-			if (i == str.length() || str.charAt(i) == '+' || str.charAt(i) == '-') {
-				String single = str.substring(prev, i);
-				if (single.equals("x") || single.equals("+x")) {
-					a++;
-					prev = i;
-					continue;
-				} else if (single.equals("-x")) {
-					a--;
-					prev = i;
-					continue;
-				}
-				if (single.equals(""))
-					continue;
-				if (single.contains("x"))
-					a += Integer.parseInt(single.substring(0, single.length() - 1));
-				else
-					b += Integer.parseInt(single);
-				prev = i;
-			}
+		String[] strs = equation.split("(?=[+-])");
+		for (String str : strs) {
+			if (str.equals("x") || str.equals("+x"))
+				a++;
+			else if (str.equals("-x"))
+				a--;
+			else if (str.contains("x"))
+				a += Integer.parseInt(str.substring(0, str.length() - 1));
+			else
+				b += Integer.parseInt(str);
 		}
 		return new int[] { a, b };
 	}
