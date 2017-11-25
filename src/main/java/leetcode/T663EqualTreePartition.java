@@ -1,5 +1,10 @@
 package leetcode;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import util.TreeNode;
+
 public class T663EqualTreePartition {
 	public boolean checkEqualTree(TreeNode root) {
 		if (root == null || (root.left == null && root.right == null))
