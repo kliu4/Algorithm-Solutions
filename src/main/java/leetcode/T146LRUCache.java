@@ -49,9 +49,10 @@ public class T146LRUCache {
 		node.prev.next = node.next;
 	}
 	
-	private void deleteTail() {
-		tail = tail.prev;
-		deleteNode(tail.next);
+	private Node deleteTail() {
+		Node lastNode = tail.prev;
+		deleteNode(lastNode);
+		return lastNode;
 	}
 	
     public int get(int key) {
@@ -65,14 +66,14 @@ public class T146LRUCache {
     
     public void put(int key, int value) {
     		if(map.containsKey(key)) {
-    			deleteNode(map.get(key));
+			deleteNode(map.get(key));
     		}
         Node node = new Node(key, value);
         map.put(key, node);
         addNode(node);
         if(map.size() > capacity) {
-        		deleteTail();
-        		map.remove(key);
+        		Node lastNode = deleteTail();
+        		map.remove(lastNode.key);
         }
     }
 }
