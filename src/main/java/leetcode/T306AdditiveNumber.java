@@ -3,7 +3,7 @@ package leetcode;
 import java.math.BigInteger;
 
 public class T306AdditiveNumber {
-	public boolean iSAdditiveNumber(String num) {
+	public boolean isAdditiveNumber(String num) {
 		int n = num.length();
 		for(int i = 1; i <= n/2; i++) {
 			if(num.charAt(0) == '0' && i > 1)
