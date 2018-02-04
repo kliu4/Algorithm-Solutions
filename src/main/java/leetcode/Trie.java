@@ -10,6 +10,7 @@ class TrieNode {
 	public TrieNode() {
 		
 	}
+	
 	public TrieNode(char c) {
 		this.c = c;
 	}

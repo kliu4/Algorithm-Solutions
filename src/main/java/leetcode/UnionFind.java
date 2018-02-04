@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class UnionFind {
-	Map<Integer, Integer> map = new HashMap<>();
+	Map<Integer, Integer> map = new HashMap<>(); 
 	
 	public UnionFind(int n) {
 		for (int i = 0; i <= n; i++) {
